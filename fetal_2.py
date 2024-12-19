@@ -269,4 +269,26 @@ results_df = results.sort_values(by='score',ascending=False)
 results_df = results_df.set_index('model')
 results_df.head()
 
-#DONE & DUSTED
+
+#---------------------------------------------------------------------------
+# Predicted values file
+y_pred_gbc
+test_ids = range(len(y_pred_gbc))
+
+# Create the DataFrame
+df_pred = pd.DataFrame({
+    'ID': test_ids,
+    'FetalHealthProbability': y_pred_gbc
+})
+
+# Save to CSV
+df_pred.to_csv('predictions.csv', index=False)
+df_pred.head(20)
+
+# Plot the distribution of predicted probabilities
+df_pred['FetalHealthProbability'].hist(color='skyblue', bins=30, edgecolor='black')
+plt.title('Predicted Fetal Health Probability Distribution')
+plt.xlabel('Fetal Health Probability')
+plt.ylabel('Frequency')
+plt.grid(True)
+plt.show()
